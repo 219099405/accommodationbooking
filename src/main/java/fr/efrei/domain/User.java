@@ -1,9 +1,13 @@
+/*
+User POJO
+Author: Aneeqah Talaaboedien (219099405)
+Date 28 March 2025
+ */
+
 package fr.efrei.domain;
 
-import java.lang.module.ModuleDescriptor;
-
 public class User {
-    private int userId;
+    private String userId;
     private String userName;
     private String email;
     private String password;
@@ -13,22 +17,18 @@ public class User {
     private User(){}
 
     private User(Builder builder){
-        this.userId = builder.userId;
+        this.userId= builder.userId;
         this.userName = builder.userName;
         this.email = builder.email;
         this.password = builder.password;
     }
-        public int getUserId() {
+    public String getUserId() {
             return userId;
         }
-
     public String getUserName() {
         return userName;
     }
-    public String getEmail() {
-        return email;
-
-    }
+    public String getEmail() {return email;}
     public String getPassword() {
         return password;
     }
@@ -44,12 +44,12 @@ public class User {
     }
 
     public static class Builder {
-        private int userId;
+        private String userId;
         private String userName;
         private String email;
         private String password;
 
-        public Builder setUserId(int userId) {
+        public Builder setUserId(String userId) {
             this.userId = userId;
             return this;
         }

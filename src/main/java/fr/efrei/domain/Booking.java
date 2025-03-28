@@ -1,3 +1,9 @@
+/*
+Booking POJO
+Author: Laverne Rollison (221219455)
+Date 27 March 2025
+ */
+
 package fr.efrei.domain;
 
 import java.time.LocalDate;

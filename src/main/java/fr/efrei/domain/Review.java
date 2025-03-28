@@ -1,76 +1,92 @@
 package fr.efrei.domain;
+/**
+ * Review class representing customer reviews.
 
-import java.time.LocalDate;
+ * Author: [Adin september 222757892]
 
+ */
 public class Review {
-    private int reviewId;
-    private int accommodationId;
-    private int userId;
-    private LocalDate reviewDate;
-    private int rating;
+    private final String reviewId;
+    private final String customerId;
+    private final String restaurantId;
+    private final String reviewText;
+    private final int rating;
 
-    // Constructor
-    public Review(int reviewId, int accommodationId, int userId, LocalDate reviewDate, int rating) {
-        this.reviewId = reviewId;
-        this.accommodationId = accommodationId;
-        this.userId = userId;
-        this.reviewDate = reviewDate;
-        this.rating = rating;
+    private Review(Builder builder) {
+        this.reviewId = builder.reviewId;
+        this.customerId = builder.customerId;
+        this.restaurantId = builder.restaurantId;
+        this.reviewText = builder.reviewText;
+        this.rating = builder.rating;
     }
 
-    // Getters and Setters
-    public int getReviewId() {
+    public String getReviewId() {
         return reviewId;
     }
 
-    public void setReviewId(int reviewId) {
-        this.reviewId = reviewId;
+    public String getCustomerId() {
+        return customerId;
     }
 
-    public int getAccommodationId() {
-        return accommodationId;
+    public String getRestaurantId() {
+        return restaurantId;
     }
 
-    public void setAccommodationId(int accommodationId) {
-        this.accommodationId = accommodationId;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public LocalDate getReviewDate() {
-        return reviewDate;
-    }
-
-    public void setReviewDate(LocalDate reviewDate) {
-        this.reviewDate = reviewDate;
+    public String getReviewText() {
+        return reviewText;
     }
 
     public int getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
-        if (rating >= 1 && rating <= 5) {
+    public static class Builder {
+        private String reviewId;
+        private String customerId;
+        private String restaurantId;
+        private String reviewText;
+        private int rating;
+
+        public Builder setReviewId(String reviewId) {
+            this.reviewId = reviewId;
+            return this;
+        }
+
+        public Builder setCustomerId(String customerId) {
+            this.customerId = customerId;
+            return this;
+        }
+
+        public Builder setRestaurantId(String restaurantId) {
+            this.restaurantId = restaurantId;
+            return this;
+        }
+
+        public Builder setReviewText(String reviewText) {
+            this.reviewText = reviewText;
+            return this;
+        }
+
+        public Builder setRating(int rating) {
+            if (rating < 1 || rating > 5) {
+                throw new IllegalArgumentException("Rating must be between 1 and 5.");
+            }
             this.rating = rating;
-        } else {
-            throw new IllegalArgumentException("Rating must be between 1 and 5");
+            return this;
+        }
+
+        public Review build() {
+            return new Review(this);
         }
     }
 
-    // toString method for easy display
     @Override
     public String toString() {
         return "Review{" +
-                "reviewId=" + reviewId +
-                ", accommodationId=" + accommodationId +
-                ", userId=" + userId +
-                ", reviewDate=" + reviewDate +
+                "reviewId='" + reviewId + '\'' +
+                ", customerId='" + customerId + '\'' +
+                ", restaurantId='" + restaurantId + '\'' +
+                ", reviewText='" + reviewText + '\'' +
                 ", rating=" + rating +
                 '}';
     }

@@ -64,6 +64,9 @@ public class Booking {
                 '}';
     }
 
+    public void setTotalPrice(double v) {
+    }
+
     public static class Builder {
         private int bookingId;
         private int userId;
